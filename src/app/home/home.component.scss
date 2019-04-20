@@ -1,0 +1,42 @@
+#colors{
+  padding: 30px;
+}
+
+mat-form-field{
+  padding-right: 30px;
+}
+
+
+mat-option{
+  display: flex;
+  .color_demo{
+    padding: 10px;
+    margin: 0px 10px;
+    height: 10px;
+  }
+}
+
+section{
+  padding: 0px 20px;
+}
+
+#components{
+  display: flex;
+  h4{
+    margin: 20px 0px;
+  }
+  padding: 30px;
+}
+
+/* checkbox */
+
+mat-checkbox{
+  span{
+    padding-right: 20xp;
+  }
+}
+
+/* radio */
+.radio{
+  padding-bottom: 8px;
+}
