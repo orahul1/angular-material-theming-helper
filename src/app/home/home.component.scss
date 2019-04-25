@@ -1,42 +1,61 @@
-#colors{
+#colors {
   padding: 30px;
+  text-align: center;
 }
 
-mat-form-field{
+mat-form-field {
   padding-right: 30px;
 }
 
 
-mat-option{
+mat-option {
   display: flex;
-  .color_demo{
+
+  .color_demo {
     padding: 10px;
     margin: 0px 10px;
     height: 10px;
   }
 }
 
-section{
+section {
   padding: 0px 20px;
 }
 
-#components{
+#components {
   display: flex;
-  h4{
+
+  h4 {
     margin: 20px 0px;
   }
+
   padding: 30px;
 }
 
 /* checkbox */
 
-mat-checkbox{
-  span{
+mat-checkbox {
+  span {
     padding-right: 20xp;
   }
 }
 
 /* radio */
-.radio{
+.radio {
   padding-bottom: 8px;
+}
+
+.clipboard {
+  text-align: center;
+
+  textarea {
+    width: 60%;
+    height: 150px;
+    background-color: rgb(253, 125, 66);
+    border-radius: 5px;
+    font-size: 20px;
+    color: #ffffff;
+    margin: 0 auto;
+    padding: 30px;
+  }
 }

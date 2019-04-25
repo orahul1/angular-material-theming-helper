@@ -19,8 +19,17 @@
   </mat-form-field>
 
   <mat-form-field>
+      <mat-label>Primary Contrast</mat-label>
+      <mat-select formControlName="primaryContrast">
+        <mat-option *ngFor="let item of primaryContrast" [value]="item.value">
+          <span class="color_demo" [ngStyle]="{'background-color': item.color }"></span> {{item.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  <mat-form-field>
     <mat-label>Accent</mat-label>
-    <mat-select formControlName="accent" (selectionChange)="primaryColorChange()">
+    <mat-select formControlName="accent" (selectionChange)="accentColorChange()">
       <mat-option *ngFor="let item of primaryColors" [value]="item.value">
         <span class="color_demo" [ngStyle]="{'background-color': item.color }"></span> {{item.viewValue}}
       </mat-option>
@@ -29,7 +38,7 @@
 
   <mat-form-field>
     <mat-label>Accent Contrast 1</mat-label>
-    <mat-select formControlName="accentContrast1" (selectionChange)="primaryColorChange()">
+    <mat-select formControlName="accentContrast1">
       <mat-option *ngFor="let item of contrasts" [value]="item.value">
         <span class="color_demo" [ngStyle]="{'background-color': item.color }"></span> {{item.viewValue}}
       </mat-option>
@@ -39,7 +48,7 @@
 
   <mat-form-field>
     <mat-label>Accent Contrast 2</mat-label>
-    <mat-select formControlName="accentContrast2" (selectionChange)="primaryColorChange()">
+    <mat-select formControlName="accentContrast2">
       <mat-option *ngFor="let item of contrasts" [value]="item.value">
         <span class="color_demo" [ngStyle]="{'background-color': item.color }"></span> {{item.viewValue}}
       </mat-option>
@@ -49,73 +58,15 @@
 
   <mat-form-field>
     <mat-label>Accent Contrast 3</mat-label>
-    <mat-select formControlName="accentContrast3" (selectionChange)="primaryColorChange()">
+    <mat-select formControlName="accentContrast3">
       <mat-option *ngFor="let item of contrasts" [value]="item.value">
         <span class="color_demo" [ngStyle]="{'background-color': item.color }"></span> {{item.viewValue}}
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <button mat-raised-button color="primary" (click)="generateTheme()">Generate</button>
 </form>
 
-
-<div id="components">
-
-  <!-- auto complete -->
-  <form class="example-form">
-    <h4>Autocomplete </h4>
-    <mat-form-field class="example-full-width">
-      <input type="text" placeholder="Pick one" aria-label="Number" matInput [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let option of options" [value]="option">
-          {{option}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
-
-
-  <!-- checkbox -->
-  <section class="example-section-checkbox">
-    <h4>Checkbox</h4>
-    <div>
-      <mat-checkbox class="example-margin" [checked]="true">Checked</mat-checkbox>
-    </div>
-    <mat-checkbox class="example-margin">Not Checked</mat-checkbox>
-  </section>
-
-
-  <!-- radio buttons -->
-  <section>
-    <h4>Radio button</h4>
-    <form class="example-container">
-      <div>
-        <mat-radio-group>
-          <div class="radio">
-            <mat-radio-button value="auto" [checked]="true">Checked</mat-radio-button>
-          </div>
-          <mat-radio-button value="always">Not Checked</mat-radio-button>
-        </mat-radio-group>
-      </div>
-    </form>
-  </section>
-
-
-  <!-- date picker -->
-  <section>
-    <h4>Date picker</h4>
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </section>
-
-  <!-- form field -->
-  <section>
-    <h4>From Field</h4>
-    <mat-form-field>
-      <input matInput placeholder="Input">
-    </mat-form-field>
-  </section>
-
+<div class="clipboard">
+  <textarea [(ngModel)]="customTheme"></textarea>
 </div>

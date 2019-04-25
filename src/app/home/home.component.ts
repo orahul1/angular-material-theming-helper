@@ -1,25 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { primaryColorsCollection, 
-         accentColorsCollection, 
-         redContrastCollection, 
-         pinkContrastCollection, 
-         purpleContrastCollection, 
-         deepPurpleContrastCollection, 
-         indigoContrastCollection,
-         blueContrastCollection,
-         lightBlueContrastCollection,
-         cyanContrastCollection,
-         tealContrastCollection,
-         greenContrastCollection,
-         lightGreenContrastCollection,
-         limeContrastCollection,
-         yellowContrastCollection,
-         amberContrastCollection,
-         orangeContrastCollection,
-         deepOrangeContrastCollection,
-         brownContrastCollection,
-         greyContrastCollection } from '../colors';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  primaryColorsCollection,
+  accentColorsCollection,
+  redContrastCollection,
+  pinkContrastCollection,
+  purpleContrastCollection,
+  deepPurpleContrastCollection,
+  indigoContrastCollection,
+  blueContrastCollection,
+  lightBlueContrastCollection,
+  cyanContrastCollection,
+  tealContrastCollection,
+  greenContrastCollection,
+  lightGreenContrastCollection,
+  limeContrastCollection,
+  yellowContrastCollection,
+  amberContrastCollection,
+  orangeContrastCollection,
+  deepOrangeContrastCollection,
+  brownContrastCollection,
+  greyContrastCollection
+} from '../colors';
+import {
+  FormControl,
+  FormGroup
+} from '@angular/forms';
 
 
 @Component({
@@ -28,107 +36,98 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  options: string[] = ['One', 'Two', 'Three'];
   selectionForm = new FormGroup({
-    primary : new FormControl(),
-    accent : new FormControl(),
-    accentContrast1 : new FormControl(),
-    accentContrast2 : new FormControl(),
-    accentContrast3 : new FormControl(),
-
+    primary: new FormControl(),
+    primaryContrast: new FormControl(),
+    accent: new FormControl(),
+    accentContrast1: new FormControl(),
+    accentContrast2: new FormControl(),
+    accentContrast3: new FormControl(),
   })
 
-  constructor() { }
-  
+  customTheme: string;
+  constructor() {}
+
   primaryColors = primaryColorsCollection;
+  primaryContrast = redContrastCollection;
   accentColors = accentColorsCollection;
   contrasts = redContrastCollection;
-  
-  ngOnInit() {
+
+
+  ngOnInit() {}
+
+  generateTheme() {
+    this.customTheme = "$theme-primary: mat-palette(" + this.selectionForm.controls['primary'].value + ',' + ' ' + this.selectionForm.controls['primaryContrast'].value + "); \n$light-accent: mat-palette(" + this.selectionForm.controls['accent'].value + ',' + ' ' + this.selectionForm.controls['accentContrast1'].value + ',' + ' ' + this.selectionForm.controls['accentContrast2'].value + ',' + ' ' + this.selectionForm.controls['accentContrast3'].value + ");"
   }
 
-  primaryColorChange(){
-/*     console.log(this.selectionForm.controls['primary'].value); */
-    console.log(this.selectionForm.controls['accent'].value);
+  accentColorChange() {
     let accentColor = this.selectionForm.controls['accent'].value;
-    this.changeContrast(accentColor);
+    this.contrasts = this.changeContrast(accentColor);
   }
 
-  changeContrast(color){
-    switch(color) {
+  primaryColorChange() {
+    let primaryColor = this.selectionForm.controls['primary'].value;
+    this.primaryContrast = this.changeContrast(primaryColor);
+  }
+
+  changeContrast(color) {
+    switch (color) {
       case "$mat-red":
-          this.contrasts = redContrastCollection;
-          break;
+        return redContrastCollection;
+
       case "$mat-pink":
-          this.contrasts = pinkContrastCollection;
-          break;
+        return pinkContrastCollection;
 
       case "$mat-purple":
-          this.contrasts = purpleContrastCollection;
-          break;
+        return purpleContrastCollection;
 
       case "$mat-deep-purple":
-          this.contrasts = deepPurpleContrastCollection;
-          break;
+        return deepPurpleContrastCollection;
 
       case "$mat-indigo":
-          this.contrasts = indigoContrastCollection;
-          break;
+        return indigoContrastCollection;
 
       case "$mat-blue":
-          this.contrasts = blueContrastCollection;
-          break;
+        return blueContrastCollection;
 
       case "$mat-light-blue":
-          this.contrasts = lightBlueContrastCollection;
-          break;
+        return lightBlueContrastCollection;
 
       case "$mat-cyan":
-          this.contrasts = cyanContrastCollection;
-          break;
+        return cyanContrastCollection;
 
       case "$mat-teal":
-          this.contrasts = tealContrastCollection;
-          break;
+        return tealContrastCollection;
 
       case "$mat-green":
-          this.contrasts = greenContrastCollection;
-          break;
+        return greenContrastCollection;
 
       case "$mat-light-green":
-          this.contrasts = lightGreenContrastCollection;
-          break;
+        return lightGreenContrastCollection;
 
       case "$mat-lime":
-          this.contrasts = limeContrastCollection;
-          break;
+        return limeContrastCollection;
 
       case "$mat-yellow":
-          this.contrasts = yellowContrastCollection;
-          break;
+        return yellowContrastCollection;
 
       case "$mat-amber":
-          this.contrasts = amberContrastCollection;
-          break;
+        return amberContrastCollection;
 
       case "$mat-orange":
-          this.contrasts = orangeContrastCollection;
-          break;
+        return orangeContrastCollection;
 
       case "$mat-deep-orange":
-          this.contrasts = deepOrangeContrastCollection;
-          break;
+        return deepOrangeContrastCollection;
 
       case "$mat-brown":
-          this.contrasts = brownContrastCollection;
-          break;
+        return brownContrastCollection;
 
       case "$mat-grey":
-          this.contrasts = greyContrastCollection;
-          break;
+        return greyContrastCollection;
 
       default:
-        this.contrasts = redContrastCollection;
+        return redContrastCollection;
     }
   }
 

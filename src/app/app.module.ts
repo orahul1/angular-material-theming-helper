@@ -9,15 +9,15 @@ import { AppComponent } from './app.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, MatNativeDateModule, MatRadioModule } from '@angular/material';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { CopyToClipboardDirective } from './directives/copy-to-clipboard.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    CopyToClipboardDirective
   ],
   imports: [
     BrowserModule,
@@ -27,12 +27,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatToolbarModule,
     MatSelectModule,
     MatAutocompleteModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
     MatFormFieldModule,
-    MatRadioModule
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
