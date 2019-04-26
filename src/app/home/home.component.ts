@@ -37,6 +37,7 @@ import {
 })
 export class HomeComponent implements OnInit {
   selectionForm = new FormGroup({
+    warn: new FormControl(),
     primary: new FormControl(),
     primaryContrast: new FormControl(),
     accent: new FormControl(),
@@ -54,20 +55,40 @@ export class HomeComponent implements OnInit {
   contrasts = redContrastCollection;
 
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.setInitialColors();
+    this.generateTheme();
+  }
+
+
+  setInitialColors(){
+    this.selectionForm.controls['warn'].setValue('$mat-red');
+    this.selectionForm.controls['primary'].setValue('$mat-deep-orange');
+    this.selectionForm.controls['primaryContrast'].setValue('800');
+    this.selectionForm.controls['accent'].setValue('$mat-grey');
+    this.selectionForm.controls['accentContrast1'].setValue('A200');
+    this.selectionForm.controls['accentContrast2'].setValue('A100');
+    this.selectionForm.controls['accentContrast3'].setValue('A400');
+  }
 
   generateTheme() {
-    this.customTheme = "$theme-primary: mat-palette(" + this.selectionForm.controls['primary'].value + ',' + ' ' + this.selectionForm.controls['primaryContrast'].value + "); \n$light-accent: mat-palette(" + this.selectionForm.controls['accent'].value + ',' + ' ' + this.selectionForm.controls['accentContrast1'].value + ',' + ' ' + this.selectionForm.controls['accentContrast2'].value + ',' + ' ' + this.selectionForm.controls['accentContrast3'].value + ");"
+    this.customTheme = "$app-warn: mat-palette("+this.selectionForm.controls['warn'].value+"); \n"+
+                       "$custom-primary: mat-palette(" + this.selectionForm.controls['primary'].value + ',' + ' ' + this.selectionForm.controls['primaryContrast'].value + "); \n" + 
+                       "$custom-accent: mat-palette(" + this.selectionForm.controls['accent'].value + ',' + ' ' + this.selectionForm.controls['accentContrast1'].value + ',' + ' ' + this.selectionForm.controls['accentContrast2'].value + ',' + ' ' + this.selectionForm.controls['accentContrast3'].value + "); \n" +
+                       "$custom-theme: mat-light-theme($custom-primary, $custom-accent, $app-warn); \n" +
+                       "@include angular-material-theme($custom-theme);"
   }
 
   accentColorChange() {
     let accentColor = this.selectionForm.controls['accent'].value;
     this.contrasts = this.changeContrast(accentColor);
+    this.generateTheme();
   }
 
   primaryColorChange() {
     let primaryColor = this.selectionForm.controls['primary'].value;
     this.primaryContrast = this.changeContrast(primaryColor);
+    this.generateTheme();
   }
 
   changeContrast(color) {
@@ -130,5 +151,4 @@ export class HomeComponent implements OnInit {
         return redContrastCollection;
     }
   }
-
 }
